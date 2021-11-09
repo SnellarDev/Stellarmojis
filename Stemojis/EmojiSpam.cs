@@ -1,7 +1,9 @@
-﻿using MelonLoader;
+﻿using KiraiMod.WingAPI;
+using MelonLoader;
 using System.Collections;
 using UnityEngine;
 using VRC.SDKBase;
+using System;
 
 namespace Stemojis
 {
@@ -10,6 +12,7 @@ namespace Stemojis
         public override void OnApplicationStart()
         {
             WhereDaUI().Start();
+            WingAPI.Initialize();
         }
 
         public override void OnUpdate()
@@ -22,43 +25,43 @@ namespace Stemojis
                     switch (parsenum)
                     {
                         case "hearts":
-                            EmojiRPC(2);
+                            EmojiRPC(52);
                             break;
 
                         case "thumbsup":
-                            EmojiRPC(1);
-                            break;
-
-                        case "thumbsdown":
-                            EmojiRPC(4);
-                            break;
-
-                        case "laugh":
-                            EmojiRPC(6);
-                            break;
-
-                        case "kiss":
-                            EmojiRPC(9);
-                            break;
-
-                        case "flame":
-                            EmojiRPC(16);
-                            break;
-
-                        case "moneys":
                             EmojiRPC(17);
                             break;
 
-                        case "tomato":
-                            EmojiRPC(21);
+                        case "thumbsdown":
+                            EmojiRPC(16);
                             break;
 
-                        case "zzz":
+                        case "laugh":
+                            EmojiRPC(9);
+                            break;
+
+                        case "kiss":
+                            EmojiRPC(8);
+                            break;
+
+                        case "flame":
                             EmojiRPC(22);
                             break;
 
+                        case "moneys":
+                            EmojiRPC(45);
+                            break;
+
+                        case "tomato":
+                            EmojiRPC(37);
+                            break;
+
+                        case "zzz":
+                            EmojiRPC(56);
+                            break;
+
                         case "snowfall":
-                            EmojiRPC(42);
+                            EmojiRPC(23);
                             break;
                     }
                     Delay = 0f;

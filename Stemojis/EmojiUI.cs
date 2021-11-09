@@ -1,6 +1,8 @@
-﻿using RubyButtonAPI;
+﻿using KiraiMod.WingAPI;
+using KiraiMod.WingAPI.RawUI;
 using UnityEngine;
 using MelonLoader;
+using System;
 
 namespace Stemojis
 {
@@ -8,106 +10,28 @@ namespace Stemojis
     {
         public static void EmojiGUI()
         {
-            MainNest = new QMNestedButton("ShortcutMenu", 5, 2, "Emoji\nSpam", "Select which emojis you want to spam", Color.cyan, Color.cyan, null, null);
-            Hearts = new QMToggleButton(MainNest, 1, 0, "Hearts", delegate
+            try
             {
-                EmojiSpam.parsenum = "hearts";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            thumbsup = new QMToggleButton(MainNest, 2, 0, "Thumbs Up", delegate
-            {
-                EmojiSpam.parsenum = "thumbsup";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            thumbsdown = new QMToggleButton(MainNest, 3, 0, "Thumbs Down", delegate
-            {
-                EmojiSpam.parsenum = "thumbsdown";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            laugh = new QMToggleButton(MainNest, 4, 0, "Laugh", delegate
-            {
-                EmojiSpam.parsenum = "laugh";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            kiss = new QMToggleButton(MainNest, 1, 1, "Kiss", delegate
-            {
-                EmojiSpam.parsenum = "kiss";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            flame = new QMToggleButton(MainNest, 2, 1, "Flame", delegate
-            {
-                EmojiSpam.parsenum = "flame";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            moneys = new QMToggleButton(MainNest, 3, 1, "Money", delegate
-            {
-                EmojiSpam.parsenum = "moneys";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            tomato = new QMToggleButton(MainNest, 4, 1, "Tomatos", delegate
-            {
-                EmojiSpam.parsenum = "tomato";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            ZZZ = new QMToggleButton(MainNest, 1, 2, "Zzz", delegate
-            {
-                EmojiSpam.parsenum = "zzz";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            Snow = new QMToggleButton(MainNest, 2, 2, "Snowfall", delegate
-            {
-                EmojiSpam.parsenum = "snowfall";
-            }, "OFF", delegate
-            {
-                EmojiSpam.parsenum = string.Empty;
-            }, "Spams the specified emoji", Color.cyan, Color.cyan, false, false);
-            increment = new QMSingleButton(MainNest, 3, 2, "Delay +1", delegate
-            {
-                EmojiSpam.offset++;
-            }, "Sets the delay of spamming the emojis to go up by 1 second on each press", Color.cyan, Color.cyan);
-            decrement = new QMSingleButton(MainNest, 4, 2, "Delay -1", delegate
-            {
-                if(EmojiSpam.offset < 3)
+                WingAPI.OnWingInit += new System.Action<Wing.BaseWing>(wing =>
                 {
-                    MelonLogger.Msg("The current delay is 2, you cannot go lower than this delay.");
-                }
-                else
-                {
-                    EmojiSpam.offset--;
-                }
-            }, "Sets the delay of spamming the emojis to go down by 1 second on each press", Color.cyan, Color.cyan);
+                    WingPage page = wing.CreatePage("Emojis");
+                    WingToggle toggle = page.CreateToggle("Hearts", 0, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "hearts"));
+                    WingToggle toggle2 = page.CreateToggle("ThumbsUp", 1, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "thumbsup"));
+                    WingToggle toggle3 = page.CreateToggle("ThumbsDown", 2, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "thumbsdown"));
+                    WingToggle toggle4 = page.CreateToggle("Laugh", 3, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "laugh"));
+                    WingToggle toggle5 = page.CreateToggle("Kiss", 4, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "kiss"));
+                    WingToggle toggle6 = page.CreateToggle("Flame", 5, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "flame"));
+                    WingPage nest = page.CreateNestedPage("Emoji Page 2", 6);
+                    WingToggle toggle7 = nest.CreateToggle("Money", 0, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "moneys"));
+                    WingToggle toggle8 = nest.CreateToggle("Tomato", 1, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "tomato"));
+                    WingToggle toggle9 = nest.CreateToggle("Zzz", 2, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "zzz"));
+                    WingToggle toggle10 = nest.CreateToggle("Snowfall", 3, UnityEngine.Color.green, UnityEngine.Color.red, false, new Action<bool>(state => EmojiSpam.parsenum = (state == false) ? null : "snowfall"));
+                });
+            }
+            catch (Exception ex)
+            {
+                MelonLogger.Msg(ex);
+            }
         }
-
-        internal static QMNestedButton MainNest;
-        internal static QMToggleButton Hearts;
-        internal static QMToggleButton Snow;
-        internal static QMToggleButton ZZZ;
-        internal static QMToggleButton laugh;
-        internal static QMToggleButton flame;
-        internal static QMToggleButton kiss;
-        internal static QMToggleButton moneys;
-        internal static QMToggleButton tomato;
-        internal static QMToggleButton thumbsup;
-        internal static QMToggleButton thumbsdown;
-        internal static QMSingleButton increment;
-        internal static QMSingleButton decrement;
     }
 }

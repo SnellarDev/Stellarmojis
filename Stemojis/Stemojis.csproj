@@ -330,9 +330,14 @@
   <ItemGroup>
     <Compile Include="EmojiSpam.cs" />
     <Compile Include="EmojiUI.cs" />
+    <Compile Include="Kirai\Extensions.cs" />
+    <Compile Include="Kirai\Wing.cs" />
+    <Compile Include="Kirai\WingAPI.cs" />
+    <Compile Include="Kirai\WingButton.cs" />
+    <Compile Include="Kirai\WingPage.cs" />
+    <Compile Include="Kirai\WingToggle.cs" />
     <Compile Include="Misc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RubyButtonAPI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
