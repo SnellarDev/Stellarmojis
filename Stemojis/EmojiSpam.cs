@@ -11,7 +11,7 @@ namespace Stemojis
     {
         public override void OnApplicationStart()
         {
-            WhereDaUI().Start();
+            MelonCoroutines.Start(WhereDaUI());
             WingAPI.Initialize();
         }
 
